@@ -1,0 +1,36 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Доска сосна",
+            "cube_price": 2500.0,
+            "cubes": 5.0
+        },
+        {
+            "id": 2,
+            "name": "Название",
+            "cube_price": 1590.0,
+            "cubes": 30.0
+        },
+        {
+            "id": 3,
+            "name": "SSS",
+            "cube_price": 120.0,
+            "cubes": 7.0
+        }
+    ],
+    "sales": [
+        {
+            "product_id": 1,
+            "product_name": "Доска сосна ",
+            "cubes": 10.0,
+            "total_price": 25000.0
+        },
+        {
+            "product_id": 3,
+            "product_name": "SSS",
+            "cubes": 23.0,
+            "total_price": 2760.0
+        }
+    ]
+}
