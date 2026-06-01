@@ -13,6 +13,7 @@ templates = Jinja2Templates(directory="templates")
 
 API_URL = "https://6821ee2fb342dce8004c65e8.mockapi.io/products"
 
+USERS_API = "https://6821ee2fb342dce8004c65e8.mockapi.io/users"
 
 # ---------- MODELS ----------
 
@@ -26,6 +27,10 @@ class Sale(BaseModel):
     product_id: int
     cubes: float
     
+
+class User(BaseModel):
+    username: str
+    password: str
     
 
 
@@ -104,4 +109,50 @@ def sell_product(sale: Sale):
         "sold_cubes": sale.cubes,
         "total_price": total_price,
         "remaining": new_cubes
+    }
+    
+
+@app.post("/register")
+def register(user: User):
+
+    users = requests.get(USERS_API).json()
+
+    for u in users:
+        if u["username"] == user.username:
+            return {"error": "Пользователь уже существует"}
+
+    response = requests.post(
+        USERS_API,
+        json={
+            "username": user.username,
+            "password": user.password
+        }
+    )
+
+    return {
+        "message": "Регистрация успешна"
+    }
+    
+
+
+@app.post("/login")
+def login(user: User):
+
+    users = requests.get(USERS_API).json()
+
+    for u in users:
+
+        if (
+            u["username"] == user.username
+            and
+            u["password"] == user.password
+        ):
+            return {
+                "success": True,
+                "message": "Вход выполнен"
+            }
+
+    return {
+        "success": False,
+        "message": "Неверный логин или пароль"
     }

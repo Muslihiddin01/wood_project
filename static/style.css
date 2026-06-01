@@ -1,0 +1,215 @@
+/* Базовые сбросы и переменные */
+:root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-input: #334155;
+    --accent: #10b981; /* Приятный изумрудно-зеленый под дерево/лес */
+    --accent-hover: #059669;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: #475569;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Контейнер */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Экраны авторизации и склада */
+.auth, .warehouse {
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* AUTH ЭКРАН (Форма по центру) */
+.auth {
+    max-width: 420px;
+    margin: 40px auto;
+    background: var(--bg-card);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.auth h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth hr {
+    border: 0;
+    height: 1px;
+    background: var(--border);
+    margin: 30px 0;
+    opacity: 0.5;
+}
+
+/* ВЕРХНЯЯ ПАНЕЛЬ */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+/* СЕТКА СКЛАДА (Карточки теперь стоят красиво) */
+.warehouse {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+/* Делаем топбар на всю ширину сетки */
+.topbar {
+    grid-column: 1 / -1;
+}
+
+/* КАРТОЧКИ */
+.card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+}
+
+.card h2 {
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #fff;
+    border-left: 4px solid var(--accent);
+    padding-left: 10px;
+}
+
+/* ИНПУТЫ */
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-input);
+    color: white;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+/* КНОПКИ */
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Кнопка Выйти (Красная) */
+button.logout {
+    width: auto;
+    margin: 0;
+    padding: 10px 20px;
+    background: var(--danger);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+button.logout:hover {
+    background: var(--danger-hover);
+}
+
+/* СПИСОК ТОВАРОВ */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 350px;
+    overflow-y: auto; /* Скролл, если товаров слишком много */
+    padding-right: 5px;
+}
+
+/* Стилизация скроллбара для списка */
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+ul::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}
+
+li {
+    background: var(--bg-main);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Красивое разделение данных внутри li */
+li span.id { color: var(--text-muted); font-size: 0.85rem; }
+li span.name { font-weight: bold; color: #fff; }
+li span.details { color: #34d399; font-size: 0.9rem; }
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

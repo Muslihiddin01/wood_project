@@ -3,33 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Склад древесины</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
 
-<h1>Склад древесины</h1>
+<div class="container">
 
-<h2>Добавить товар</h2>
+    <!-- AUTH SCREEN -->
+    <div class="auth" id="auth">
 
-<input type="text" id="name" placeholder="Название">
-<input type="number" id="price" placeholder="Цена за куб">
-<input type="number" id="cubes" placeholder="Количество кубов">
+        <h2>🔐 Вход в систему</h2>
 
-<button onclick="addProduct()">Добавить</button>
+        <input type="text" id="login_username" placeholder="Логин">
+        <input type="password" id="login_password" placeholder="Пароль">
 
-<hr>
+        <button onclick="login()">Войти</button>
 
-<h2>Товары</h2>
+        <hr>
 
-<ul id="products"></ul>
+        <h2>📝 Регистрация</h2>
 
-<hr>
+        <input type="text" id="reg_username" placeholder="Логин">
+        <input type="password" id="reg_password" placeholder="Пароль">
 
-<h2>Продажа</h2>
+        <button onclick="registerUser()">Зарегистрироваться</button>
 
-<input type="number" id="sell_id" placeholder="ID товара">
-<input type="number" id="sell_cubes" placeholder="Сколько кубов">
+    </div>
 
-<button onclick="sellProduct()">Продать</button>
+    <!-- WAREHOUSE -->
+    <div id="warehouse" class="warehouse">
+
+        <!-- TOP BAR -->
+        <div class="topbar">
+            <h1>🌲 Склад древесины</h1>
+            <button class="logout" onclick="logout()">Выйти</button>
+        </div>
+
+        <div class="card">
+
+            <h2>Добавить товар</h2>
+
+            <input type="text" id="name" placeholder="Название">
+            <input type="number" id="price" placeholder="Цена за куб">
+            <input type="number" id="cubes" placeholder="Количество кубов">
+
+            <button onclick="addProduct()">Добавить</button>
+
+        </div>
+
+        <div class="card">
+
+            <h2>📦 Товары</h2>
+            <ul id="products"></ul>
+
+        </div>
+
+        <div class="card">
+
+            <h2>💰 Продажа</h2>
+
+            <input type="number" id="sell_id" placeholder="ID товара">
+            <input type="number" id="sell_cubes" placeholder="Сколько кубов">
+
+            <button onclick="sellProduct()">Продать</button>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script src="/static/script.js"></script>
 
