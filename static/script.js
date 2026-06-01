@@ -1,4 +1,4 @@
-console.log("working!!!");
+console.log("Working!!!");
 
 async function registerUser() {
   const username = document.getElementById("reg_username").value;
